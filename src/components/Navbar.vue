@@ -1,45 +1,39 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" href="/inicio">
+    <router-link class="navbar-brand" to="/inicio">
       <!-- <img src="" alt="Logo"> -->
       PeluSOS
-    </a>
+    </router-link>
     <button
       class="navbar-toggler"
       type="button"
-      data-toggle="collapse"
-      data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
+      @click="menuVisible=!menuVisible"
     >
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="navbar-collapse collapse" :class="menuVisible?'show':''">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" :class="dropdownVisible?'show':''">
           <a
             class="nav-link dropdown-toggle"
             href="#"
-            id="navbarDropdown"
             role="button"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
+            @click="dropdownVisible=!dropdownVisible"
           >Perfil</a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="/perfil">Ver Perfil</a>
-            <a class="dropdown-item" href="/reportes">Mis Reportes</a>
+          <div class="dropdown-menu" :class="dropdownVisible?'show':''"
+           @click="dropdownVisible=!dropdownVisible, menuVisible=!menuVisible">
+            <router-link class="dropdown-item" to="/perfil">Ver Perfil</router-link>
+            <router-link class="dropdown-item" to="/reportes">Mis Reportes</router-link>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/">Cerrar sesión</a>
+            <router-link class="dropdown-item" to="/">Cerrar sesión</router-link>
           </div>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/noticias">Noticias</a>
+        <li class="nav-item" @click="menuVisible=!menuVisible">
+          <router-link class="nav-link" to="/noticias">Noticias</router-link>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Legales</a>
+        <li class="nav-item" @click="menuVisible=!menuVisible">
+          <router-link class="nav-link" to="#">Legales</router-link>
         </li>
       </ul>
     </div>
@@ -48,6 +42,12 @@
 
 <script>
 export default {
-  name: "Navbar"
+  name: "Navbar",
+  data(){
+    return {
+      menuVisible:false,
+      dropdownVisible:false
+    }
+  }
 };
 </script>

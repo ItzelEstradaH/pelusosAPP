@@ -28,7 +28,7 @@
         </div>
       </div>
     </div>
-    <p class="mt-3 text-center">No tienes cuenta? <a href="/registro">Registrate aquí</a></p>
+    <p class="mt-3 text-center">No tienes cuenta? <router-link to="/registro">Registrate aquí</router-link></p>
   </div>
 </template>
 
